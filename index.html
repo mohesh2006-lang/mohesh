@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohesh FX | Funded Forex Trader — Kerala & Tamil Nadu</title>
+<meta name="description" content="Mohesh — Professional Funded Forex Trader based in Kerala & Tamil Nadu. Forex trading services, risk management, position size calculators, investment & trading guides.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
+<style>
+/* ============ RESET & TOKENS ============ */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#04060c;
+  --bg2:#070b14;
+  --bg3:#0b1120;
+  --card:rgba(255,255,255,.028);
+  --card2:rgba(255,255,255,.05);
+  --stroke:rgba(255,255,255,.08);
+  --stroke2:rgba(255,255,255,.14);
+  --green:#00e6a0;
+  --green-d:#00b37c;
+  --blue:#2ea8ff;
+  --gold:#f5b70a;
+  --red:#ff4d6d;
+  --txt:#e8eefb;
+  --muted:#8b98ad;
+  --grad:linear-gradient(135deg,#00e6a0 0%,#2ea8ff 100%);
+  --grad2:linear-gradient(135deg,#f5b70a 0%,#ff7a45 100%);
+  --shadow:0 20px 60px -20px rgba(0,0,0,.9);
+  --r:18px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{
+  font-family:'Outfit',system-ui,sans-serif;
+  background:var(--bg);color:var(--txt);
+  line-height:1.65;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+body.lock{overflow:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit;outline:none;border:none;background:none}
+::selection{background:rgba(0,230,160,.3)}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:#04060c}
+::-webkit-scrollbar-thumb{background:linear-gradient(#00e6a0,#2ea8ff);border-radius:9px}
+
+.container{width:min(1220px,92%);margin-inline:auto;position:relative;z-index:2}
+section{position:relative;padding:110px 0}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* ============ PRELOADER ============ */
+#preloader{
+  position:fixed;inset:0;z-index:9999;background:#04060c;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .6s ease,visibility .6s ease;
+}
+#preloader.hide{opacity:0;visibility:hidden}
+.pl-inner{text-align:center}
+.pl-bars{display:flex;gap:7px;align-items:flex-end;height:56px;justify-content:center;margin-bottom:22px}
+.pl-bars i{
+  width:9px;border-radius:3px;background:var(--grad);
+  animation:plbar 1s ease-in-out infinite;
+}
+.pl-bars i:nth-child(1){height:22px;animation-delay:0s}
+.pl-bars i:nth-child(2){height:40px;animation-delay:.12s}
+.pl-bars i:nth-child(3){height:56px;animation-delay:.24s}
+.pl-bars i:nth-child(4){height:34px;animation-delay:.36s}
+.pl-bars i:nth-child(5){height:48px;animation-delay:.48s}
+@keyframes plbar{0%,100%{transform:scaleY(.45);opacity:.45}50%{transform:scaleY(1);opacity:1}}
+.pl-text{
+  font-weight:800;letter-spacing:.42em;font-size:13px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:18px;
+}
+.pl-track{width:180px;height:3px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:0 auto}
+.pl-track i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;animation:plfill 1.5s ease forwards}
+@keyframes plfill{to{width:100%}}
+
+/* ============ NAV ============ */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  transition:all .4s cubic-bezier(.2,.8,.2,1);
+  padding:18px 0;
+}
+header.scrolled{
+  padding:10px 0;
+  background:rgba(4,6,12,.72);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border-bottom:1px solid var(--stroke);
+}
+.nav-inner{width:min(1220px,92%);margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.06em;font-size:16px}
+.logo-mark{
+  width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  background:var(--grad);color:#04060c;font-weight:900;font-size:18px;
+  box-shadow:0 8px 26px -6px rgba(0,230,160,.6);
+  animation:markPulse 3s ease-in-out infinite;
+}
+@keyframes markPulse{0%,100%{box-shadow:0 8px 26px -6px rgba(0,230,160,.55)}50%{box-shadow:0 8px 38px -4px rgba(0,230,160,.9)}}
+.logo-text em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:6px;align-items:center}
+.nav-links a{
+  padding:9px 15px;border-radius:10px;font-size:14.5px;font-weight:500;color:var(--muted);
+  transition:.28s;position:relative;
+}
+.nav-links a:hover{color:var(--txt);background:rgba(255,255,255,.05)}
+.nav-links a.active{color:var(--green)}
+.nav-links a.active::after{
+  content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);
+  width:16px;height:2px;border-radius:9px;background:var(--green);
+}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:13px 26px;border-radius:12px;font-weight:600;font-size:14.5px;
+  cursor:pointer;transition:.3s cubic-bezier(.2,.8,.2,1);white-space:nowrap;
+  position:relative;overflow:hidden;
+}
+.btn-primary{
+  background:var(--grad);color:#03110c;
+  box-shadow:0 10px 34px -12px rgba(0,230,160,.85);
+}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 44px -12px rgba(0,230,160,1)}
+.btn-primary::after{
+  content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+  transition:.6s;
+}
+.btn-primary:hover::after{left:130%}
+.btn-ghost{
+  background:rgba(255,255,255,.04);border:1px solid var(--stroke2);color:var(--txt);
+  backdrop-filter:blur(10px);
+}
+.btn-ghost:hover{background:rgba(255,255,255,.09);border-color:var(--green);transform:translateY(-3px)}
+.btn-gold{background:var(--grad2);color:#1a0e00;box-shadow:0 10px 34px -12px rgba(245,183,10,.8)}
+.btn-gold:hover{transform:translateY(-3px)}
+.nav-cta{padding:11px 22px;font-size:14px}
+.burger{display:none;width:44px;height:44px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--stroke);cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;width:20px;height:2px;background:var(--txt);border-radius:9px;transition:.3s}
+.burger span:nth-child(1){top:15px}
+.burger span:nth-child(2){top:21px}
+.burger span:nth-child(3){top:27px}
+.burger.on span:nth-child(1){top:21px;transform:rotate(45deg)}
+.burger.on span:nth-child(2){opacity:0}
+.burger.on span:nth-child(3){top:21px;transform:rotate(-45deg)}
+
+/* ============ HERO ============ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:150px 0 90px;overflow:hidden;
+}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:.55;z-index:0}
+.hero::before{
+  content:'';position:absolute;inset:0;z-index:1;
+  background:radial-gradient(ellipse 80% 60% at 50% 45%,transparent 0%,rgba(4,6,12,.55) 60%,#04060c 100%);
+}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);z-index:0;pointer-events:none}
+.orb1{width:480px;height:480px;background:rgba(0,230,160,.16);top:-120px;left:-120px;animation:float1 16s ease-in-out infinite}
+.orb2{width:420px;height:420px;background:rgba(46,168,255,.14);bottom:-140px;right:-100px;animation:float2 20s ease-in-out infinite}
+@keyframes float1{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,60px)}}
+@keyframes float2{0%,100%{transform:translate(0,0)}50%{transform:translate(-70px,-50px)}}
+.hero-inner{text-align:center;max-width:960px;margin-inline:auto}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:9px 20px;border-radius:99px;
+  background:rgba(0,230,160,.08);border:1px solid rgba(0,230,160,.28);
+  font-size:13.5px;font-weight:500;color:#8ff5d4;letter-spacing:.02em;
+  margin-bottom:30px;backdrop-filter:blur(10px);
+  animation:fadeUp .9s cubic-bezier(.2,.8,.2,1) both;
+}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(0,230,160,.7);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(0,230,160,.7)}70%{box-shadow:0 0 0 12px rgba(0,230,160,0)}100%{box-shadow:0 0 0 0 rgba(0,230,160,0)}}
+.hero h1{
+  font-size:clamp(2.3rem,6vw,4.6rem);font-weight:800;line-height:1.06;
+  letter-spacing:-.03em;margin-bottom:24px;
+  animation:fadeUp 1s .1s cubic-bezier(.2,.8,.2,1) both;
+}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;position:relative}
+.hero-sub{
+  font-size:clamp(1rem,1.6vw,1.16rem);color:var(--muted);max-width:680px;margin:0 auto 40px;
+  animation:fadeUp 1s .2s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero-sub strong{color:var(--txt);font-weight:600}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 1s .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  margin-top:70px;animation:fadeUp 1s .45s cubic-bezier(.2,.8,.2,1) both;
+}
+.hstat{
+  background:var(--card);border:1px solid var(--stroke);border-radius:16px;
+  padding:22px 14px;backdrop-filter:blur(14px);transition:.35s;
+}
+.hstat:hover{border-color:rgba(0,230,160,.45);transform:translateY(-6px);background:var(--card2)}
+.hstat b{
+  display:block;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;letter-spacing:-.02em;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hstat span{font-size:12.5px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;font-weight:500}
+
+/* ============ TICKER ============ */
+.ticker-wrap{
+  border-top:1px solid var(--stroke);border-bottom:1px solid var(--stroke);
+  background:rgba(255,255,255,.015);overflow:hidden;padding:15px 0;position:relative;
+}
+.ticker-wrap::before,.ticker-wrap::after{
+  content:'';position:absolute;top:0;bottom:0;width:130px;z-index:3;pointer-events:none;
+}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg,#04060c,transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(270deg,#04060c,transparent)}
+.ticker{display:flex;gap:44px;width:max-content;animation:scroll 42s linear infinite}
+.ticker-wrap:hover .ticker{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.tick{display:flex;align-items:center;gap:11px;font-size:14px;font-weight:600;white-space:nowrap}
+.tick .pair{color:var(--muted);font-weight:500;letter-spacing:.04em}
+.tick .px{font-family:'JetBrains Mono',monospace;font-size:13.5px}
+.tick .chg{font-size:12.5px;font-weight:700;padding:2px 8px;border-radius:6px}
+.up{color:var(--green);background:rgba(0,230,160,.1)}
+.down{color:var(--red);background:rgba(255,77,109,.1)}
+
+/* ============ SECTION HEAD ============ */
+.shead{text-align:center;max-width:720px;margin:0 auto 64px}
+.tag{
+  display:inline-block;padding:7px 16px;border-radius:99px;
+  background:rgba(0,230,160,.08);border:1px solid rgba(0,230,160,.25);
+  color:#7ef0cd;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.shead h2{
+  font-size:clamp(1.9rem,4.2vw,3rem);font-weight:800;letter-spacing:-.028em;line-height:1.14;margin-bottom:16px;
+}
+.shead p{color:var(--muted);font-size:1.02rem}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .85s cubic-bezier(.2,.8,.2,1),transform .85s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ ABOUT ============ */
+#about{padding-top:110px}
+.about-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:60px;align-items:center}
+.about-visual{position:relative}
+.about-card{
+  background:linear-gradient(160deg,rgba(0,230,160,.07),rgba(46,168,255,.04));
+  border:1px solid var(--stroke);border-radius:26px;padding:38px 32px;
+  backdrop-filter:blur(16px);position:relative;overflow:hidden;
+}
+.about-card::before{
+  content:'';position:absolute;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,230,160,.25),transparent 70%);
+  top:-90px;right:-70px;
+}
+.avatar{
+  width:88px;height:88px;border-radius:22px;display:grid;place-items:center;
+  background:var(--grad);font-size:34px;font-weight:900;color:#04060c;
+  margin-bottom:22px;box-shadow:0 16px 44px -14px rgba(0,230,160,.9);
+}
+.about-card h3{font-size:1.6rem;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+.about-card .role{
+  font-size:13.5px;color:var(--green);font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.about-card p{color:var(--muted);font-size:.97rem;margin-bottom:16px}
+.about-tags{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}
+.atag{
+  padding:7px 14px;border-radius:9px;background:rgba(255,255,255,.05);
+  border:1px solid var(--stroke);font-size:12.5px;font-weight:500;color:#b9c6db;
+  transition:.3s;
+}
+.atag:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px)}
+.about-text h2{font-size:clamp(1.8rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.028em;line-height:1.15;margin-bottom:20px}
+.about-text > p{color:var(--muted);margin-bottom:18px}
+.feat-list{display:grid;gap:16px;margin-top:30px}
+.feat{display:flex;gap:15px;align-items:flex-start}
+.feat-ico{
+  flex-shrink:0;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(0,230,160,.1);border:1px solid rgba(0,230,160,.25);font-size:19px;
+  transition:.35s;
+}
+.feat:hover .feat-ico{background:rgba(0,230,160,.2);transform:scale(1.08) rotate(-5deg)}
+.feat h4{font-size:1rem;font-weight:600;margin-bottom:3px}
+.feat p{font-size:.9rem;color:var(--muted)}
+
+/* ============ SERVICES ============ */
+#services{background:linear-gradient(180deg,transparent,rgba(0,230,160,.022),transparent)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.svc{
+  position:relative;padding:34px 28px;border-radius:22px;
+  background:var(--card);border:1px solid var(--stroke);
+  backdrop-filter:blur(14px);transition:.45s cubic-bezier(.2,.8,.2,1);
+  overflow:hidden;
+}
+.svc::before{
+  content:'';position:absolute;inset:0;border-radius:22px;padding:1px;
+  background:var(--grad);opacity:0;transition:.45s;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+}
+.svc:hover::before{opacity:1}
+.svc:hover{transform:translateY(-9px);background:var(--card2);box-shadow:0 28px 60px -28px rgba(0,230,160,.5)}
+.svc-ico{
+  width:56px;height:56px;border-radius:16px;display:grid;place-items:center;
+  font-size:25px;margin-bottom:22px;
+  background:linear-gradient(135deg,rgba(0,230,160,.15),rgba(46,168,255,.1));
+  border:1px solid rgba(0,230,160,.25);transition:.45s;
+}
+.svc:hover .svc-ico{transform:scale(1.1) rotate(-6deg);box-shadow:0 12px 30px -10px rgba(0,230,160,.7)}
+.svc h3{font-size:1.18rem;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+.svc p{font-size:.93rem;color:var(--muted);margin-bottom:18px}
+.svc ul{list-style:none;display:grid;gap:8px}
+.svc li{font-size:.87rem;color:#9fb0c9;display:flex;gap:9px;align-items:flex-start}
+.svc li::before{content:'▸';color:var(--green);font-weight:700}
+.svc-num{
+  position:absolute;top:18px;right:22px;font-size:3.4rem;font-weight:900;
+  color:rgba(255,255,255,.03);letter-spacing:-.05em;font-family:'JetBrains Mono',monospace;
+}
+
+/* ============ CALCULATORS ============ */
+#calculators{background:linear-gradient(180deg,transparent,rgba(46,168,255,.03),transparent)}
+.calc-shell{
+  background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.015));
+  border:1px solid var(--stroke);border-radius:28px;overflow:hidden;
+  backdrop-filter:blur(18px);box-shadow:var(--shadow);
+}
+.calc-tabs{
+  display:flex;gap:6px;padding:14px;border-bottom:1px solid var(--stroke);
+  overflow-x:auto;scrollbar-width:none;background:rgba(0,0,0,.2);
+}
+.calc-tabs::-webkit-scrollbar{display:none}
+.ctab{
+  padding:12px 22px;border-radius:12px;font-size:14px;font-weight:600;
+  color:var(--muted);cursor:pointer;transition:.3s;white-space:nowrap;
+  border:1px solid transparent;
+}
+.ctab:hover{color:var(--txt);background:rgba(255,255,255,.05)}
+.ctab.active{
+  color:#03110c;background:var(--grad);
+  box-shadow:0 10px 26px -12px rgba(0,230,160,.9);
+}
+.calc-body{padding:36px}
+.cpanel{display:none;animation:panelIn .5s cubic-bezier(.2,.8,.2,1)}
+.cpanel.active{display:block}
+@keyframes panelIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:38px}
+.cform{display:grid;gap:20px}
+.field{display:grid;gap:9px}
+.field label{font-size:13px;font-weight:600;color:#9fb0c9;letter-spacing:.03em;display:flex;justify-content:space-between;align-items:center}
+.field label em{font-style:normal;color:var(--green);font-family:'JetBrains Mono',monospace;font-size:13px}
+.inp{
+  width:100%;padding:14px 16px;border-radius:12px;
+  background:rgba(255,255,255,.045);border:1px solid var(--stroke);
+  font-size:15px;font-weight:500;transition:.3s;
+  font-family:'JetBrains Mono',monospace;
+}
+.inp:focus{border-color:var(--green);background:rgba(0,230,160,.06);box-shadow:0 0 0 4px rgba(0,230,160,.1)}
+select.inp{cursor:pointer;font-family:'Outfit',sans-serif;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238b98ad' d='M6 8 0 0h12z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;
+}
+select.inp option{background:#0b1120;color:#e8eefb}
+.range{
+  -webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:9px;
+  background:rgba(255,255,255,.09);cursor:pointer;margin-top:2px;
+}
+.range::-webkit-slider-thumb{
+  -webkit-appearance:none;width:20px;height:20px;border-radius:50%;
+  background:var(--grad);cursor:pointer;border:3px solid #04060c;
+  box-shadow:0 0 0 3px rgba(0,230,160,.3);
+}
+.range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#00e6a0;cursor:pointer;border:3px solid #04060c}
+
+/* results */
+.results{
+  background:rgba(0,0,0,.3);border:1px solid var(--stroke);
+  border-radius:20px;padding:28px;display:grid;gap:14px;align-content:start;
+  position:relative;overflow:hidden;
+}
+.results::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);
+}
+.res-title{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.res-row{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:14px 16px;border-radius:12px;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05);transition:.3s;
+}
+.res-row:hover{background:rgba(255,255,255,.06);border-color:rgba(0,230,160,.25)}
+.res-row span{font-size:13.5px;color:var(--muted);font-weight:500}
+.res-row b{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--txt)}
+.res-row.big b{font-size:21px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.res-row.warn b{color:var(--red)}
+.res-row.good b{color:var(--green)}
+.meter{height:8px;border-radius:9px;background:rgba(255,255,255,.07);overflow:hidden;margin-top:6px}
+.meter i{display:block;height:100%;border-radius:9px;background:var(--grad);width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.meter.danger i{background:linear-gradient(90deg,#f5b70a,#ff4d6d)}
+.note{
+  font-size:12.5px;color:#6f7f96;line-height:1.6;padding:14px 16px;
+  border-radius:12px;background:rgba(46,168,255,.05);border:1px solid rgba(46,168,255,.15);
+}
+.note b{color:#8fc9ff;font-weight:600}
+.sub-h{font-size:14px;font-weight:700;color:var(--txt);margin:8px 0 2px;display:flex;align-items:center;gap:9px}
+.sub-h::before{content:'';width:3px;height:15px;border-radius:9px;background:var(--grad)}
+.bars{display:flex;align-items:flex-end;gap:5px;height:90px;margin-top:14px;padding:0 2px}
+.bars i{
+  flex:1;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,#00e6a0,#2ea8ff);
+  min-height:4px;transition:height .7s cubic-bezier(.2,.8,.2,1);opacity:.85;
+}
+.bars i:hover{opacity:1;filter:brightness(1.3)}
+
+/* ============ GUIDES ============ */
+.guides-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.guide-col{
+  background:var(--card);border:1px solid var(--stroke);border-radius:24px;
+  padding:34px 30px;backdrop-filter:blur(14px);transition:.4s;
+}
+.guide-col:hover{border-color:rgba(0,230,160,.3)}
+.guide-head{display:flex;align-items:center;gap:15px;margin-bottom:26px}
+.guide-ico{
+  width:52px;height:52px;border-radius:15px;display:grid;place-items:center;font-size:23px;
+  background:linear-gradient(135deg,rgba(0,230,160,.16),rgba(46,168,255,.08));
+  border:1px solid rgba(0,230,160,.25);
+}
+.guide-head h3{font-size:1.3rem;font-weight:800;letter-spacing:-.02em}
+.guide-head p{font-size:12.5px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;font-weight:600}
+.acc{border-bottom:1px solid rgba(255,255,255,.06)}
+.acc:last-child{border-bottom:none}
+.acc-q{
+  width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:17px 0;cursor:pointer;text-align:left;font-size:.98rem;font-weight:600;
+  color:var(--txt);transition:.3s;
+}
+.acc-q:hover{color:var(--green)}
+.acc-q i{
+  flex-shrink:0;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+  background:rgba(255,255,255,.06);font-style:normal;font-size:16px;
+  transition:.4s cubic-bezier(.2,.8,.2,1);color:var(--green);
+}
+.acc.open .acc-q i{transform:rotate(135deg);background:rgba(0,230,160,.18)}
+.acc-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.2,.8,.2,1)}
+.acc-a p{font-size:.9rem;color:var(--muted);padding:0 0 18px;line-height:1.75}
+.acc-a ul{list-style:none;padding:0 0 18px;display:grid;gap:7px}
+.acc-a li{font-size:.88rem;color:var(--muted);display:flex;gap:9px;padding-left:2px}
+.acc-a li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
+
+/* ============ PROCESS ============ */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;position:relative}
+.step{
+  position:relative;padding:32px 26px;border-radius:20px;
+  background:var(--card);border:1px solid var(--stroke);transition:.4s;
+}
+.step:hover{transform:translateY(-8px);border-color:rgba(0,230,160,.35);background:var(--card2)}
+.step-n{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:17px;
+  background:var(--grad);color:#03110c;margin-bottom:18px;
+  box-shadow:0 10px 28px -12px rgba(0,230,160,.85);
+}
+.step h4{font-size:1.05rem;font-weight:700;margin-bottom:9px}
+.step p{font-size:.89rem;color:var(--muted)}
+
+/* ============ CONTACT ============ */
+#contact{background:linear-gradient(180deg,transparent,rgba(0,230,160,.03))}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px}
+.cinfo{display:grid;gap:16px;align-content:start}
+.cbox{
+  display:flex;gap:16px;align-items:center;padding:22px;
+  border-radius:18px;background:var(--card);border:1px solid var(--stroke);
+  transition:.38s;position:relative;overflow:hidden;
+}
+.cbox::after{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);
+  transform:scaleY(0);transition:.38s;transform-origin:bottom;
+}
+.cbox:hover::after{transform:scaleY(1)}
+.cbox:hover{transform:translateX(7px);border-color:rgba(0,230,160,.35);background:var(--card2)}
+.cbox-ico{
+  width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:21px;
+  background:rgba(0,230,160,.1);border:1px solid rgba(0,230,160,.22);flex-shrink:0;
+}
+.cbox span{font-size:12px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.cbox b{display:block;font-size:1.02rem;font-weight:600;margin-top:2px;word-break:break-word}
+.cbox b a:hover{color:var(--green)}
+.form-card{
+  background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid var(--stroke);border-radius:24px;padding:36px 32px;
+  backdrop-filter:blur(16px);
+}
+.form-card h3{font-size:1.4rem;font-weight:800;margin-bottom:8px;letter-spacing:-.02em}
+.form-card > p{font-size:.9rem;color:var(--muted);margin-bottom:26px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fgrid .full{grid-column:1/-1}
+textarea.inp{resize:vertical;min-height:110px;font-family:'Outfit',sans-serif}
+.form-msg{
+  margin-top:14px;font-size:13.5px;padding:12px 16px;border-radius:11px;
+  display:none;background:rgba(0,230,160,.1);border:1px solid rgba(0,230,160,.3);color:#8ff5d4;
+}
+.form-msg.show{display:block;animation:panelIn .4s}
+
+/* ============ FOOTER ============ */
+footer{
+  border-top:1px solid var(--stroke);padding:60px 0 30px;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.5));
+}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:44px}
+.foot-brand p{font-size:.9rem;color:var(--muted);margin:16px 0 20px;max-width:300px}
+.socials{display:flex;gap:10px}
+.socials a{
+  width:40px;height:40px;border-radius:11px;display:grid;place-items:center;
+  background:rgba(255,255,255,.05);border:1px solid var(--stroke);font-size:16px;
+  transition:.32s;
+}
+.socials a:hover{background:var(--grad);color:#03110c;transform:translateY(-4px);border-color:transparent}
+.foot-col h5{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;color:var(--txt)}
+.foot-col a{display:block;font-size:.9rem;color:var(--muted);padding:6px 0;transition:.3s}
+.foot-col a:hover{color:var(--green);transform:translateX(5px)}
+.disclaimer{
+  padding:20px 22px;border-radius:14px;background:rgba(255,77,109,.05);
+  border:1px solid rgba(255,77,109,.18);font-size:12.5px;color:#a8b6c9;line-height:1.75;
+  margin-bottom:26px;
+}
+.disclaimer b{color:#ff8ba0}
+.foot-bottom{
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+  padding-top:26px;border-top:1px solid var(--stroke);font-size:13px;color:var(--muted);
+}
+.foot-bottom a:hover{color:var(--green)}
+
+/* ============ FLOATING WHATSAPP ============ */
+.float-wa{
+  position:fixed;right:22px;bottom:22px;z-index:800;
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,#25d366,#128c7e);
+  box-shadow:0 12px 36px -8px rgba(37,211,102,.85);font-size:26px;
+  transition:.35s cubic-bezier(.2,.8,.2,1);
+  animation:waPulse 2.6s infinite;
+}
+.float-wa:hover{transform:scale(1.12) rotate(6deg)}
+@keyframes waPulse{0%{box-shadow:0 12px 36px -8px rgba(37,211,102,.85),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 12px 36px -8px rgba(37,211,102,.85),0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 12px 36px -8px rgba(37,211,102,.85),0 0 0 0 rgba(37,211,102,0)}}
+
+/* ============ TOP PROGRESS ============ */
+#progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:1000;
+  background:var(--grad);box-shadow:0 0 14px rgba(0,230,160,.9);transition:width .1s linear;
+}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1024px){
+  .about-grid,.cgrid,.guides-grid,.contact-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:860px){
+  .nav-links{
+    position:fixed;inset:0;background:rgba(4,6,12,.97);backdrop-filter:blur(24px);
+    flex-direction:column;justify-content:center;gap:8px;
+    opacity:0;visibility:hidden;transition:.4s;z-index:850;
+  }
+  .nav-links.open{opacity:1;visibility:visible}
+  .nav-links a{font-size:1.35rem;padding:14px 26px;font-weight:600}
+  .burger{display:block;z-index:860}
+  .nav-cta{display:none}
+  .calc-body{padding:24px 20px}
+  .ctab{padding:10px 16px;font-size:13px}
+  section{padding:80px 0}
+  .hero{padding:130px 0 70px}
+}
+@media(max-width:560px){
+  .fgrid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .form-card{padding:26px 20px}
+  .results{padding:20px}
+  .guide-col{padding:26px 20px}
+  .hero-stats{grid-template-columns:1fr 1fr;gap:10px}
+  .hstat{padding:16px 10px}
+  .ticker-wrap::before,.ticker-wrap::after{width:60px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="progress"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pl-inner">
+    <div class="pl-bars"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="pl-text">MOHESH FX</div>
+    <div class="pl-track"><i></i></div>
+  </div>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header id="header">
+  <div class="nav-inner">
+    <a href="#home" class="logo">
+      <span class="logo-mark">M</span>
+      <span class="logo-text">MOHESH<em>FX</em></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#calculators">Calculators</a>
+      <a href="#guides">Guides</a>
+      <a href="#process">Process</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn-primary nav-cta">Get Started</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <canvas id="heroCanvas"></canvas>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="container hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Funded Account Trader · Kerala &amp; Tamil Nadu</div>
+    <h1>Trade Smart. <span class="grad">Manage Risk.</span><br>Grow Consistently.</h1>
+    <p class="hero-sub">
+      I'm <strong>Mohesh</strong> — a professional funded forex trader helping traders and investors
+      build disciplined, risk-first strategies with proven money management systems.
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Start Trading With Me →</a>
+      <a href="#calculators" class="btn btn-ghost">🧮 Free Calculators</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><b data-count="5" data-suffix="+">0</b><span>Years Experience</span></div>
+      <div class="hstat"><b data-count="250" data-prefix="$" data-suffix="K+">0</b><span>Funded Capital</span></div>
+      <div class="hstat"><b data-count="1200" data-suffix="+">0</b><span>Trades Executed</span></div>
+      <div class="hstat"><b data-count="500" data-suffix="+">0</b><span>Traders Mentored</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker"></div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-card">
+          <div class="avatar">M</div>
+          <h3>Mohesh</h3>
+          <div class="role">Funded Forex Trader</div>
+          <p>
+            Based in Kerala &amp; Tamil Nadu, I trade funded accounts with a strict
+            risk-management-first approach. My focus is simple: protect capital,
+            execute the plan, compound steadily.
+          </p>
+          <p>
+            I help aspiring traders and investors understand the real mechanics of the
+            forex market — not hype, not gambling — but structured, repeatable process.
+          </p>
+          <div class="about-tags">
+            <span class="atag">📊 Price Action</span>
+            <span class="atag">🛡️ Risk Management</span>
+            <span class="atag">📈 Funded Accounts</span>
+            <span class="atag">🧠 Trading Psychology</span>
+            <span class="atag">💹 Forex &amp; Gold</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal">
+        <span class="tag">About Me</span>
+        <h2>Discipline Over Luck.<br>Process Over Prediction.</h2>
+        <p>
+          Most traders fail not because they can't read charts — but because they don't
+          manage risk. I built my trading around one core principle: <strong>never risk
+          more than you can afford to lose on a single trade</strong>.
+        </p>
+        <p>
+          Whether you're a complete beginner or an experienced trader looking to pass a
+          funded challenge, I provide the framework, tools and mentorship to get you
+          trading with clarity and confidence.
+        </p>
+        <div class="feat-list">
+          <div class="feat">
+            <div class="feat-ico">🎯</div>
+            <div>
+              <h4>Risk-First Approach</h4>
+              <p>Every trade planned with defined risk, stop loss and target before entry.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-ico">📉</div>
+            <div>
+              <h4>Proven Money Management</h4>
+              <p>Position sizing models that keep drawdowns controlled and accounts alive.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-ico">🤝</div>
+            <div>
+              <h4>Personal Mentorship</h4>
+              <p>One-on-one guidance in Tamil, Malayalam, Hindi &amp; English.</p>
+            </div>
+          </div>
+          <div class="feat">
+            <div class="feat-ico">📱</div>
+            <div>
+              <h4>Always Reachable</h4>
+              <p>Direct WhatsApp support for students and clients — real answers, fast.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services">
+  <div class="container">
+    <div class="shead reveal">
+      <span class="tag">Services</span>
+      <h2>What I Offer</h2>
+      <p>Professional forex trading services built around capital protection, consistency and long-term growth.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-ico">🏦</div>
+        <h3>Funded Account Trading</h3>
+        <p>Professional management of prop-firm funded accounts with strict drawdown control.</p>
+        <ul>
+          <li>Prop firm challenge guidance</li>
+          <li>Daily &amp; max drawdown discipline</li>
+          <li>Consistency-based execution</li>
+        </ul>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-ico">📡</div>
+        <div class="svc-num">02</div>
+        <h3>Trade Signals &amp; Setups</h3>
+        <p>High-probability trade ideas with complete entry, stop loss and take profit levels.</p>
+        <ul>
+          <li>Forex majors &amp; Gold (XAUUSD)</li>
+          <li>Clear SL / TP on every call</li>
+          <li>Reasoning behind each setup</li>
+        </ul>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">03</div>
+        <div class="svc-ico">🛡️</div>
+        <h3>Risk Management Setup</h3>
+        <p>Custom risk framework designed around your account size and goals.</p>
+        <ul>
+          <li>Position sizing blueprint</li>
+          <li>Daily loss limits &amp; rules</li>
+          <li>Drawdown recovery planning</li>
+        </ul>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">04</div>
+        <div class="svc-ico">🎓</div>
+        <h3>1-on-1 Mentorship</h3>
+        <p>Personal training from absolute basics to advanced price action and psychology.</p>
+        <ul>
+          <li>Live market sessions</li>
+          <li>Chart reading &amp; structure</li>
+          <li>Trading journal review</li>
+        </ul>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">05</div>
+        <div class="svc-ico">💼</div>
+        <h3>Investment Guidance</h3>
+        <p>Structured capital allocation plans for those looking at forex as an asset class.</p>
+        <ul>
+          <li>Capital allocation planning</li>
+          <li>Return vs. risk expectations</li>
+          <li>Withdrawal &amp; compounding plan</li>
+        </ul>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-num">06</div>
+        <div class="svc-ico">🔄</div>
+        <h3>Account Recovery Plan</h3>
+        <p>Structured recovery roadmap for traders stuck in drawdown or blown accounts.</p>
+        <ul>
+          <li>Mistake audit &amp; analysis</li>
+          <li>Rebuilt trading plan</li>
+          <li>Slow, safe recovery model</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULATORS ============ -->
+<section id="calculators">
+  <div class="container">
+    <div class="shead reveal">
+      <span class="tag">Free Tools</span>
+      <h2>Trading Calculators</h2>
+      <p>Professional-grade calculators to plan every trade before you enter. No signup required.</p>
+    </div>
+
+    <div class="calc-shell reveal">
+      <div class="calc-tabs">
+        <button class="ctab active" data-tab="pos">📐 Position Size</button>
+        <button class="ctab" data-tab="risk">🛡️ Risk Management</button>
+        <button class="ctab" data-tab="pl">💰 Profit / Loss</button>
+        <button class="ctab" data-tab="comp">📈 Compounding</button>
+      </div>
+
+      <div class="calc-body">
+
+        <!-- POSITION SIZE -->
+        <div class="cpanel active" id="panel-pos">
+          <div class="cgrid">
+            <div class="cform">
+              <div class="field">
+                <label>Account Balance (USD)</label>
+                <input type="number" class="inp" id="psBal" value="10000" min="0" step="100">
+              </div>
+              <div class="field">
+                <label>Risk Per Trade <em id="psRiskLbl">1.0%</em></label>
+                <input type="range" class="range" id="psRisk" min="0.1" max="10" step="0.1" value="1">
+              </div>
+              <div class="field">
+                <label>Stop Loss (Pips)</label>
+                <input type="number" class="inp" id="psStop" value="30" min="1" step="1">
+              </div>
+              <div class="field">
+                <label>Currency Pair</label>
+                <select class="inp" id="psPair">
+                  <option value="10">EUR/USD — €/$</option>
+                  <option value="10">GBP/USD — £/$</option>
+                  <option value="10">AUD/USD — A$/$</option>
+                  <option value="10">NZD/USD — NZ$/$</option>
+                  <option value="6.7">USD/JPY — $/¥</option>
+                  <option value="7.3">USD/CAD — $/C$</option>
+                  <option value="11.2">USD/CHF — $/Fr</option>
+                  <option value="6.7">EUR/JPY — €/¥</option>
+                  <option value="6.7">GBP/JPY — £/¥</option>
+                  <option value="10">XAU/USD — Gold</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Pip Value / Standard Lot (USD)</label>
+                <input type="number" class="inp" id="psPip" value="10" min="0.01" step="0.01">
+              </div>
+            </div>
+
+            <div class="results">
+              <div class="res-title">Position Size Result</div>
+              <div class="res-row big"><span>Recommended Lot Size</span><b id="psLots">0.00</b></div>
+              <div class="res-row"><span>Risk Amount</span><b id="psRiskAmt">$0.00</b></div>
+              <div class="res-row"><span>Units (approx.)</span><b id="psUnits">0</b></div>
+              <div class="res-row"><span>Mini Lots (0.10)</span><b id="psMini">0.0</b></div>
+              <div class="res-row"><span>Micro Lots (0.01)</span><b id="psMicro">0.0</b></div>
+              <div class="res-row"><span>Pip Value of Position</span><b id="psPipVal">$0.00</b></div>
+              <div class="meter"><i id="psMeter"></i></div>
+              <div class="note">
+                <b>Formula:</b> Lots = (Balance × Risk%) ÷ (Stop Loss in pips × Pip Value per lot).
+                Always round <b>down</b> to stay within your risk limit.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RISK MANAGEMENT -->
+        <div class="cpanel" id="panel-risk">
+          <div class="cgrid">
+            <div class="cform">
+              <div class="sub-h">Drawdown Simulator</div>
+              <div class="field">
+                <label>Account Balance (USD)</label>
+                <input type="number" class="inp" id="rmBal" value="10000" min="0" step="100">
+              </div>
+              <div class="field">
+                <label>Risk Per Trade <em id="rmRiskLbl">1.0%</em></label>
+                <input type="range" class="range" id="rmRisk" min="0.1" max="10" step="0.1" value="1">
+              </div>
+              <div class="field">
+                <label>Consecutive Losses</label>
+                <input type="number" class="inp" id="rmLosses" value="5" min="1" max="50" step="1">
+              </div>
+              <div class="field">
+                <label>Max Daily Risk <em id="rmDailyLbl">3.0%</em></label>
+                <input type="range" class="range" id="rmDaily" min="0.5" max="15" step="0.5" value="3">
+              </div>
+
+              <div class="sub-h" style="margin-top:14px">Expectancy Calculator</div>
+              <div class="field">
+                <label>Win Rate <em id="rmWrLbl">50%</em></label>
+                <input type="range" class="range" id="rmWr" min="1" max="99" step="1" value="50">
+              </div>
+              <div class="field">
+                <label>Risk : Reward (1 : X)</label>
+                <input type="number" class="inp" id="rmRR" value="2" min="0.1" step="0.1">
+              </div>
+            </div>
+
+            <div class="results">
+              <div class="res-title">Risk Analysis</div>
+              <div class="res-row"><span>Risk Per Trade</span><b id="rmRiskAmt">$0.00</b></div>
+              <div class="res-row"><span>Daily Loss Limit</span><b id="rmDailyAmt">$0.00</b></div>
+              <div class="res-row warn"><span>Balance After Losses</span><b id="rmRemain">$0.00</b></div>
+              <div class="res-row warn"><span>Total Drawdown</span><b id="rmDD">0.00%</b></div>
+              <div class="meter danger"><i id="rmMeter"></i></div>
+              <div class="res-row"><span>Breakeven Win Rate</span><b id="rmBE">0%</b></div>
+              <div class="res-row good"><span>Expectancy Per Trade</span><b id="rmExp">0.00R</b></div>
+              <div class="note" id="rmVerdict">
+                Enter your numbers to see the risk verdict.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROFIT / LOSS -->
+        <div class="cpanel" id="panel-pl">
+          <div class="cgrid">
+            <div class="cform">
+              <div class="field">
+                <label>Lot Size</label>
+                <input type="number" class="inp" id="plLots" value="0.10" min="0.01" step="0.01">
+              </div>
+              <div class="field">
+                <label>Pip Value / Standard Lot (USD)</label>
+                <input type="number" class="inp" id="plPip" value="10" min="0.01" step="0.01">
+              </div>
+              <div class="field">
+                <label>Pips Gained / Lost</label>
+                <input type="number" class="inp" id="plPips" value="40" step="1">
+              </div>
+              <div class="field">
+                <label>Trade Direction</label>
+                <select class="inp" id="plDir">
+                  <option value="1">Buy / Long</option>
+                  <option value="-1">Sell / Short</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Number of Trades</label>
+                <input type="number" class="inp" id="plCount" value="1" min="1" step="1">
+              </div>
+            </div>
+            <div class="results">
+              <div class="res-title">Profit / Loss Result</div>
+              <div class="res-row big"><span>Net Result</span><b id="plNet">$0.00</b></div>
+              <div class="res-row"><span>Per Trade</span><b id="plPer">$0.00</b></div>
+              <div class="res-row"><span>Total Pips</span><b id="plTotalPips">0</b></div>
+              <div class="res-row"><span>Pip Value of Position</span><b id="plPipVal">$0.00</b></div>
+              <div class="res-row"><span>Return on $10,000</span><b id="plRoi">0.00%</b></div>
+              <div class="note">
+                <b>Note:</b> Pip value varies slightly by broker and live exchange rate.
+                Gold (XAUUSD) pip value depends on your broker's contract specification.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPOUNDING -->
+        <div class="cpanel" id="panel-comp">
+          <div class="cgrid">
+            <div class="cform">
+              <div class="field">
+                <label>Starting Balance (USD)</label>
+                <input type="number" class="inp" id="cpBal" value="1000" min="1" step="100">
+              </div>
+              <div class="field">
+                <label>Monthly Return <em id="cpRateLbl">5%</em></label>
+                <input type="range" class="range" id="cpRate" min="0.5" max="30" step="0.5" value="5">
+              </div>
+              <div class="field">
+                <label>Duration (Months)</label>
+                <input type="number" class="inp" id="cpMonths" value="12" min="1" max="60" step="1">
+              </div>
+              <div class="field">
+                <label>Monthly Withdrawal (%)</label>
+                <input type="number" class="inp" id="cpWithdraw" value="0" min="0" max="100" step="1">
+              </div>
+            </div>
+            <div class="results">
+              <div class="res-title">Growth Projection</div>
+              <div class="res-row big"><span>Final Balance</span><b id="cpFinal">$0.00</b></div>
+              <div class="res-row good"><span>Total Profit</span><b id="cpProfit">$0.00</b></div>
+              <div class="res-row"><span>Total Growth</span><b id="cpGrowth">0%</b></div>
+              <div class="res-row"><span>Total Withdrawn</span><b id="cpWith">$0.00</b></div>
+              <div class="bars" id="cpBars"></div>
+              <div class="note">
+                <b>Reality check:</b> Consistent monthly returns compound powerfully, but
+                losses compound too. This is a projection — not a promise.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUIDES ============ -->
+<section id="guides">
+  <div class="container">
+    <div class="shead reveal">
+      <span class="tag">Knowledge Base</span>
+      <h2>Investment &amp; Trading Guides</h2>
+      <p>Everything you need to understand before putting real money into the forex market.</p>
+    </div>
+
+    <div class="guides-grid">
+      <!-- INVESTMENT GUIDE -->
+      <div class="guide-col reveal">
+        <div class="guide-head">
+          <div class="guide-ico">💼</div>
+          <div>
+            <h3>Investment Guide</h3>
+            <p>Capital · Allocation · Growth</p>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">1. Understand What Forex Really Is <i>+</i></button>
+          <div class="acc-a"><p>
+            Forex is the global market where currencies are exchanged. It is the largest
+            and most liquid market in the world, open 24 hours a day, 5 days a week.
+            Prices move because of interest rates, economic data, geopolitics and
+            supply-demand — not because of "signals".
+          </p></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">2. Only Invest Risk Capital <i>+</i></button>
+          <div class="acc-a">
+            <p>Never invest money you need for rent, EMI, education or emergencies. A safe rule:</p>
+            <ul>
+              <li>Emergency fund of 6 months — untouched</li>
+              <li>Zero high-interest debt</li>
+              <li>Only 5–15% of net savings allocated to trading</li>
+              <li>Money you can lose without changing your lifestyle</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">3. The 1% Rule of Risk <i>+</i></button>
+          <div class="acc-a"><p>
+            Risk a maximum of 1% of your account per trade. With a $10,000 account that's
+            $100 risk per trade. This means even 10 consecutive losses only costs you
+            about 9.6% of your account — completely recoverable. Traders who risk 10% per
+            trade blow up after 10 losses.
+          </p></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">4. Realistic Return Expectations <i>+</i></button>
+          <div class="acc-a">
+            <p>Anyone promising 50% monthly is selling you a dream. Realistic benchmarks:</p>
+            <ul>
+              <li>Beginner: 0–3% per month (after learning phase)</li>
+              <li>Consistent trader: 3–8% per month</li>
+              <li>Professional funded trader: 5–10% per month with strict risk</li>
+              <li>Anything above 20% monthly long-term is extremely rare</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">5. Compounding &amp; Withdrawals <i>+</i></button>
+          <div class="acc-a"><p>
+            Compounding is the real wealth engine. $1,000 at 5% monthly becomes about
+            $1,795 in 12 months, and $3,225 in 24 months — without adding a single rupee.
+            Decide early: reinvest everything for growth, or withdraw a fixed percentage
+            monthly for income. Never withdraw your risk capital.
+          </p></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">6. Taxation &amp; Records (India) <i>+</i></button>
+          <div class="acc-a"><p>
+            Forex trading income is taxable in India. Maintain a clean record of every
+            trade, deposit and withdrawal. Consult a qualified chartered accountant for
+            your specific situation — I am a trader, not a tax advisor.
+          </p></div>
+        </div>
+      </div>
+
+      <!-- TRADING GUIDE -->
+      <div class="guide-col reveal">
+        <div class="guide-head">
+          <div class="guide-ico">📈</div>
+          <div>
+            <h3>Trading Guide</h3>
+            <p>Structure · Execution · Discipline</p>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">1. Learn Market Structure First <i>+</i></button>
+          <div class="acc-a"><p>
+            Before indicators, learn structure: higher highs, higher lows, lower highs,
+            lower lows. Trend, range, or transition — every chart is in one of these three
+            states. Trade with structure, not against it.
+          </p></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">2. The Pre-Trade Checklist <i>+</i></button>
+          <div class="acc-a">
+            <p>Never enter without all 6 boxes ticked:</p>
+            <ul>
+              <li>Is the higher timeframe trend clear?</li>
+              <li>Is there a valid entry trigger?</li>
+              <li>Is the stop loss placed at a logical level?</li>
+              <li>Is the risk:reward at least 1:2?</li>
+              <li>Does the position size match my 1% rule?</li>
+              <li>Am I emotionally neutral right now?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">3. Best Trading Sessions <i>+</i></button>
+          <div class="acc-a">
+            <p><strong>London (12:30–4:30 PM IST)</strong> — highest volatility, best for EUR, GBP.<br>
+               <strong>New York (6:00–10:30 PM IST)</strong> — strong USD moves, overlaps with London.<br>
+               <strong>Asian (5:30–11:30 AM IST)</strong> — quieter, range-bound, good for JPY, AUD.<br>
+               Avoid the 30 minutes around major news releases unless you trade news deliberately.
+            </p>
+          </div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">4. Stop Loss Is Non-Negotiable <i>+</i></button>
+          <div class="acc-a"><p>
+            Every trade gets a stop loss before entry. Never move a stop loss further away
+            to "give it room" — that is how a small loss becomes an account-ending loss.
+            The stop loss is the cost of doing business; it is not a failure.
+          </p></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">5. Keep a Trading Journal <i>+</i></button>
+          <div class="acc-a">
+            <p>Log every trade with a screenshot, the reason for entry, the emotion you felt,
+            and the outcome. After 50 trades, patterns appear — usually the same 2–3
+            mistakes repeated. Fixing those mistakes is worth more than any new indicator.
+          </p></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-q">6. Psychology &amp; Discipline <i>+</i></button>
+          <div class="acc-a">
+            <p>Trading is 20% strategy and 80% behaviour. After two losses, step away for
+            30 minutes. After a big win, do not increase lot size. Stick to a maximum of
+            2–3 trades per day. Boredom trades and revenge trades destroy more accounts
+            than bad analysis ever will.
+          </p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process">
+  <div class="container">
+    <div class="shead reveal">
+      <span class="tag">How It Works</span>
+      <h2>Start In 4 Simple Steps</h2>
+      <p>From first message to your first disciplined trade — a clear, structured path.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-n">01</div>
+        <h4>Free Consultation</h4>
+        <p>Message me on WhatsApp with your account size and goals. We talk honestly about what's realistic.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">02</div>
+        <h4>Risk Assessment</h4>
+        <p>We define your risk per trade, daily limits and a personalised money management plan.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">03</div>
+        <h4>Learn &amp; Practice</h4>
+        <p>You learn the framework, practice on demo, and get your setups reviewed before going live.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-n">04</div>
+        <h4>Trade With Support</h4>
+        <p>Go live with ongoing guidance, journal reviews and direct access whenever you need help.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="container">
+    <div class="shead reveal">
+      <span class="tag">Get In Touch</span>
+      <h2>Let's Build Your Trading Plan</h2>
+      <p>Based in Kerala &amp; Tamil Nadu — available for traders across India and worldwide.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="cinfo reveal">
+        <a class="cbox" href="tel:+919994664490">
+          <div class="cbox-ico">📞</div>
+          <div>
+            <span>Call / Phone</span>
+            <b>+91 99946 64490</b>
+          </div>
+        </a>
+        <a class="cbox" href="https://wa.me/919994664490?text=Hi%20Mohesh%2C%20I%27m%20interested%20in%20forex%20trading%20guidance." target="_blank" rel="noopener">
+          <div class="cbox-ico">💬</div>
+          <div>
+            <span>WhatsApp</span>
+            <b>Chat with Mohesh</b>
+          </div>
+        </a>
+        <div class="cbox">
+          <div class="cbox-ico">📍</div>
+          <div>
+            <span>Location</span>
+            <b>Kerala &amp; Tamil Nadu, India</b>
+          </div>
+        </div>
+        <div class="cbox">
+          <div class="cbox-ico">🕐</div>
+          <div>
+            <span>Market Hours Support</span>
+            <b>Mon – Fri · 9:00 AM – 11:00 PM IST</b>
+          </div>
+        </div>
+        <div class="note">
+          <b>Response time:</b> Usually within a few hours. For urgent trade-related
+          queries, WhatsApp is the fastest way to reach me.
+        </div>
+      </div>
+
+      <div class="form-card reveal">
+        <h3>Send Me A Message</h3>
+        <p>Fill the form and it will open WhatsApp with your message ready to send.</p>
+        <form id="contactForm">
+          <div class="fgrid">
+            <div class="field">
+              <label>Your Name</label>
+              <input type="text" class="inp" id="cfName" placeholder="Enter your name" required>
+            </div>
+            <div class="field">
+              <label>Phone Number</label>
+              <input type="tel" class="inp" id="cfPhone" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+            <div class="field full">
+              <label>Service Interested In</label>
+              <select class="inp" id="cfService">
+                <option>Funded Account Trading</option>
+                <option>Trade Signals &amp; Setups</option>
+                <option>Risk Management Setup</option>
+                <option>1-on-1 Mentorship</option>
+                <option>Investment Guidance</option>
+                <option>Account Recovery Plan</option>
+              </select>
+            </div>
+            <div class="field full">
+              <label>Your Message</label>
+              <textarea class="inp" id="cfMsg" placeholder="Tell me about your trading experience and goals..."></textarea>
+            </div>
+            <div class="full">
+              <button type="submit" class="btn btn-primary" style="width:100%">Send via WhatsApp →</button>
+              <div class="form-msg" id="formMsg">✅ Opening WhatsApp with your message...</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#home" class="logo">
+          <span class="logo-mark">M</span>
+          <span class="logo-text">MOHESH<em>FX</em></span>
+        </a>
+        <p>Professional funded forex trader based in Kerala &amp; Tamil Nadu. Risk-first trading, structured mentorship, real results.</p>
+        <div class="socials">
+          <a href="https://wa.me/919994664490" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+          <a href="tel:+919994664490" aria-label="Call">📞</a>
+          <a href="#contact" aria-label="Contact">✉️</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Navigate</h5>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+      </div>
+      <div class="foot-col">
+        <h5>Tools</h5>
+        <a href="#calculators">Position Size Calculator</a>
+        <a href="#calculators">Risk Management</a>
+        <a href="#calculators">Profit / Loss</a>
+        <a href="#calculators">Compounding</a>
+      </div>
+      <div class="foot-col">
+        <h5>Resources</h5>
+        <a href="#guides">Investment Guide</a>
+        <a href="#guides">Trading Guide</a>
+        <a href="#contact">Contact</a>
+        <a href="https://wa.me/919994664490" target="_blank" rel="noopener">WhatsApp Support</a>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <b>⚠️ Risk Disclaimer:</b> Forex and CFD trading involves significant risk of loss and is
+      not suitable for every investor. Leverage can work against you as easily as it works for
+      you. Past performance is not indicative of future results. Nothing on this website constitutes
+      financial, investment or tax advice. Never trade with money you cannot afford to lose.
+      Please consult a licensed financial advisor before making any investment decision.
+    </div>
+
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Mohesh FX. All rights reserved.</span>
+      <span>Designed &amp; built for traders, by a trader.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="float-wa" href="https://wa.me/919994664490?text=Hi%20Mohesh%2C%20I%20found%20your%20website%20and%20I%27m%20interested%20in%20forex%20trading." target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script>
+/* ============================================================
+   1. PRELOADER
+============================================================ */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('preloader').classList.add('hide'), 900);
+});
+
+/* ============================================================
+   2. SCROLL PROGRESS + HEADER
+============================================================ */
+const header = document.getElementById('header');
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const st = window.scrollY;
+  header.classList.toggle('scrolled', st > 40);
+  const h = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (h > 0 ? (st / h) * 100 : 0) + '%';
+}, { passive: true });
+
+/* ============================================================
+   3. MOBILE NAV
+============================================================ */
+const burger = document.getElementById('burger');
+const navLinks = document.getElementById('navLinks');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('on');
+  navLinks.classList.toggle('open');
+  document.body.classList.toggle('lock');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('on');
+  navLinks.classList.remove('open');
+  document.body.classList.remove('lock');
+}));
+
+/* ============================================================
+   4. ACTIVE NAV ON SCROLL
+============================================================ */
+const sections = document.querySelectorAll('section[id]');
+const navA = document.querySelectorAll('.nav-links a');
+const navObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+sections.forEach(s => navObserver.observe(s));
+
+/* ============================================================
+   5. REVEAL ON SCROLL
+============================================================ */
+const revealObs = new IntersectionObserver((entries, obs) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ============================================================
+   6. HERO CANVAS — ANIMATED CANDLESTICKS
+============================================================ */
+(function () {
+  const cv = document.getElementById('heroCanvas');
+  if (!cv) return;
+  const ctx = cv.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const CW = 9, GAP = 7, STEP = CW + GAP;
+  const PMIN = 1.0680, PMAX = 1.1020;
+  let W = 0, H = 0, shift = 0, price = 1.0850, candles = [];
+
+  function make() {
+    const o = price;
+    const drift = (Math.random() - 0.5) * 0.0032 + (1.0850 - price) * 0.06;
+    const c = o + drift;
+    const h = Math.max(o, c) + Math.random() * 0.0012;
+    const l = Math.min(o, c) - Math.random() * 0.0012;
+    price = c;
+    return { o, h, l, c };
+  }
+  function resize() {
+    const r = cv.getBoundingClientRect();
+    W = r.width; H = r.height;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const need = Math.ceil(W / STEP) + 3;
+    while (candles.length < need) candles.push(make());
+    while (candles.length > need) candles.shift();
+  }
+  const y = p => H - ((p - PMIN) / (PMAX - PMIN)) * H;
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.035)';
+    ctx.lineWidth = 1;
+    for (let i = 0; i <= 8; i++) {
+      const yy = (H / 8) * i;
+      ctx.beginPath(); ctx.moveTo(0, yy); ctx.lineTo(W, yy); ctx.stroke();
+    }
+    for (let i = 0; i <= 14; i++) {
+      const xx = (W / 14) * i;
+      ctx.beginPath(); ctx.moveTo(xx, 0); ctx.lineTo(xx, H); ctx.stroke();
+    }
+
+    // candles
+    for (let i = 0; i < candles.length; i++) {
+      const cd = candles[i];
+      const x = i * STEP + shift;
+      if (x < -STEP || x > W + STEP) continue;
+      const up = cd.c >= cd.o;
+      const col = up ? '0,230,160' : '255,77,109';
+      ctx.strokeStyle = 'rgba(' + col + ',0.8)';
+      ctx.fillStyle = 'rgba(' + col + ',0.75)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.moveTo(x + CW / 2, y(cd.h));
+      ctx.lineTo(x + CW / 2, y(cd.l));
+      ctx.stroke();
+      const yo = y(cd.o), yc = y(cd.c);
+      const top = Math.min(yo, yc);
+      const hgt = Math.max(Math.abs(yc - yo), 1.5);
+      ctx.fillRect(x, top, CW, hgt);
+    }
+
+    shift -= 0.4;
+    if (shift <= -STEP) { shift += STEP; candles.shift(); candles.push(make()); }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+/* ============================================================
+   7. TICKER (live-ish simulation)
+============================================================ */
+const tickerData = [
+  { p: 'EUR/USD', v: 1.0865 }, { p: 'GBP/USD', v: 1.2712 },
+  { p: 'USD/JPY', v: 151.42 }, { p: 'AUD/USD', v: 0.6585 },
+  { p: 'USD/CAD', v: 1.3648 }, { p: 'USD/CHF', v: 0.8925 },
+  { p: 'NZD/USD', v: 0.6012 }, { p: 'XAU/USD', v: 2318.50 },
+  { p: 'EUR/JPY', v: 164.52 }, { p: 'GBP/JPY', v: 192.45 },
+  { p: 'BTC/USD', v: 67420.00 }, { p: 'US30',   v: 39125.00 }
+];
+const tickerEl = document.getElementById('ticker');
+function buildTicker() {
+  let html = '';
+  for (let rep = 0; rep < 2; rep++) {
+    tickerData.forEach((t, i) => {
+      const chg = ((Math.random() - 0.5) * 0.9).toFixed(2);
+      const up = chg >= 0;
+      const dec = t.v > 1000 ? 2 : (t.v > 100 ? 2 : 4);
+      html += '<div class="tick">' +
+        '<span class="pair">' + t.p + '</span>' +
+        '<span class="px">' + t.v.toFixed(dec) + '</span>' +
+        '<span class="chg ' + (up ? 'up' : 'down') + '">' + (up ? '+' : '') + chg + '%</span>' +
+        '</div>';
+    });
+  }
+  tickerEl.innerHTML = html;
+}
+buildTicker();
+
+// subtle live updates
+setInterval(() => {
+  const ticks = tickerEl.querySelectorAll('.tick');
+  ticks.forEach(t => {
+    const px = t.querySelector('.px');
+    const chgEl = t.querySelector('.chg');
+    let val = parseFloat(px.textContent.replace(/,/g, ''));
+    const dec = val > 1000 ? 2 : (val > 100 ? 2 : 4);
+    val += (Math.random() - 0.5) * val * 0.0004;
+    px.textContent = val.toFixed(dec);
+    let chg = parseFloat(chgEl.textContent);
+    chg += (Math.random() - 0.5) * 0.06;
+    const up = chg >= 0;
+    chgEl.textContent = (up ? '+' : '') + chg.toFixed(2) + '%';
+    chgEl.className = 'chg ' + (up ? 'up' : 'down');
+  });
+}, 2600);
+
+/* ============================================================
+   8. COUNTER ANIMATION
+============================================================ */
+const counterObs = new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseFloat(el.dataset.count);
+    const pre = el.dataset.prefix || '';
+    const suf = el.dataset.suffix || '';
+    const dur = 1600;
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = pre + Math.round(target * eased).toLocaleString('en-US') + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    obs.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+/* ============================================================
+   9. ACCORDION
+============================================================ */
+document.querySelectorAll('.acc-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const body = item.querySelector('.acc-a');
+    const isOpen = item.classList.contains('open');
+    // close siblings in same column
+    item.parentElement.querySelectorAll('.acc').forEach(a => {
+      a.classList.remove('open');
+      a.querySelector('.acc-a').style.maxHeight = null;
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 'px';
+    }
+  });
+});
+
+/* ============================================================
+   10. CALCULATOR TABS
+============================================================ */
+document.querySelectorAll('.ctab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.ctab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cpanel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ============================================================
+   11. HELPERS
+============================================================ */
+const $ = id => document.getElementById(id);
+const money = n => '$' + (isFinite(n) ? n : 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const num = (n, d = 2) => (isFinite(n) ? n : 0).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+const val = id => parseFloat($(id).value) || 0;
+
+/* ============================================================
+   12. POSITION SIZE CALCULATOR
+============================================================ */
+function calcPosition() {
+  const bal = val('psBal');
+  const riskPct = val('psRisk');
+  const stop = val('psStop');
+  const pipVal = val('psPip');
+
+  $('psRiskLbl').textContent = riskPct.toFixed(1) + '%';
+
+  const riskAmt = bal * riskPct / 100;
+  const lots = (stop > 0 && pipVal > 0) ? riskAmt / (stop * pipVal) : 0;
+  const units = lots * 100000;
+
+  $('psLots').textContent = num(lots, 2) + ' lots';
+  $('psRiskAmt').textContent = money(riskAmt);
+  $('psUnits').textContent = Math.round(units).toLocaleString('en-US');
+  $('psMini').textContent = num(lots * 10, 1);
+  $('psMicro').textContent = num(lots * 100, 1);
+  $('psPipVal').textContent = money(lots * pipVal);
+
+  const meterPct = Math.min((riskPct / 10) * 100, 100);
+  const meter = $('psMeter');
+  meter.style.width = meterPct + '%';
+  meter.style.background = riskPct <= 2
+    ? 'linear-gradient(90deg,#00e6a0,#2ea8ff)'
+    : (riskPct <= 5 ? 'linear-gradient(90deg,#f5b70a,#ff9a3c)' : 'linear-gradient(90deg,#f5b70a,#ff4d6d)');
+}
+['psBal', 'psRisk', 'psStop', 'psPip'].forEach(id => $(id).addEventListener('input', calcPosition));
+$('psPair').addEventListener('change', function () {
+  $('psPip').value = this.value;
+  calcPosition();
+});
+calcPosition();
+
+/* ============================================================
+   13. RISK MANAGEMENT CALCULATOR
+============================================================ */
+function calcRisk() {
+  const bal = val('rmBal');
+  const riskPct = val('rmRisk');
+  const losses = Math.max(1, Math.round(val('rmLosses')));
+  const dailyPct = val('rmDaily');
+  const wr = val('rmWr');
+  const rr = val('rmRR');
+
+  $('rmRiskLbl').textContent = riskPct.toFixed(1) + '%';
+  $('rmDailyLbl').textContent = dailyPct.toFixed(1) + '%';
+  $('rmWrLbl').textContent = wr + '%';
+
+  const riskAmt = bal * riskPct / 100;
+  const dailyAmt = bal * dailyPct / 100;
+  const remain = bal * Math.pow(1 - riskPct / 100, losses);
+  const dd = bal > 0 ? (1 - remain / bal) * 100 : 0;
+
+  $('rmRiskAmt').textContent = money(riskAmt);
+  $('rmDailyAmt').textContent = money(dailyAmt);
+  $('rmRemain').textContent = money(remain);
+  $('rmDD').textContent = num(dd, 2) + '%';
+
+  const m = $('rmMeter');
+  m.style.width = Math.min(dd, 100) + '%';
+  m.style.background = dd <= 10
+    ? 'linear-gradient(90deg,#00e6a0,#2ea8ff)'
+    : (dd <= 25 ? 'linear-gradient(90deg,#f5b70a,#ff9a3c)' : 'linear-gradient(90deg,#f5b70a,#ff4d6d)');
+
+  // Expectancy
+  const p = wr / 100;
+  const beWR = (1 / (1 + rr)) * 100;
+  const expR = p * rr - (1 - p);
+  $('rmBE').textContent = num(beWR, 1) + '%';
+  $('rmExp').textContent = (expR >= 0 ? '+' : '') + num(expR, 2) + 'R';
+  $('rmExp').style.color = expR >= 0 ? 'var(--green)' : 'var(--red)';
+
+  // Verdict
+  let verdict = '';
+  let color = '';
+  if (dd <= 10) {
+    verdict = '✅ <b>Healthy risk level.</b> A ' + losses + '-loss streak only costs ' + num(dd, 1) + '% of your account. This is sustainable and fully recoverable.';
+    color = 'rgba(0,230,160,.05)';
+  } else if (dd <= 25) {
+    verdict = '⚠️ <b>Moderate risk.</b> ' + losses + ' losses in a row would drop you ' + num(dd, 1) + '%. Reduce risk per trade to 1% or lower to stay safe.';
+    color = 'rgba(245,183,10,.06)';
+  } else {
+    verdict = '🚨 <b>High risk.</b> A ' + losses + '-loss streak wipes out ' + num(dd, 1) + '% of your account. This is how accounts blow up — cut your risk per trade immediately.';
+    color = 'rgba(255,77,109,.07)';
+  }
+  if (expR < 0) {
+    verdict += '<br><br>📉 <b>Negative expectancy:</b> at ' + wr + '% win rate with 1:' + rr + ' R:R, this system loses money over time. You need a win rate above ' + num(beWR, 1) + '% to break even.';
+  }
+  $('rmVerdict').innerHTML = verdict;
+  $('rmVerdict').style.background = color;
+}
+['rmBal', 'rmRisk', 'rmLosses', 'rmDaily', 'rmWr', 'rmRR'].forEach(id => $(id).addEventListener('input', calcRisk));
+calcRisk();
+
+/* ============================================================
+   14. PROFIT / LOSS CALCULATOR
+============================================================ */
+function calcPL() {
+  const lots = val('plLots');
+  const pipVal = val('plPip');
+  const pips = val('plPips');
+  const dir = parseFloat($('plDir').value);
+  const count = Math.max(1, Math.round(val('plCount')));
+
+  const posPipVal = lots * pipVal;
+  const perTrade = posPipVal * pips * dir;
+  const net = perTrade * count;
+
+  $('plNet').textContent = (net >= 0 ? '+' : '-') + money(Math.abs(net)).slice(1);
+  $('plNet').style.color = net >= 0 ? 'var(--green)' : 'var(--red)';
+  $('plPer').textContent = (perTrade >= 0 ? '+' : '-') + money(Math.abs(perTrade)).slice(1);
+  $('plTotalPips').textContent = num(pips * count * dir, 1) + ' pips';
+  $('plPipVal').textContent = money(posPipVal);
+  $('plRoi').textContent = num((net / 10000) * 100, 2) + '%';
+  $('plRoi').style.color = net >= 0 ? 'var(--green)' : 'var(--red)';
+}
+['plLots', 'plPip', 'plPips', 'plDir', 'plCount'].forEach(id => $(id).addEventListener('input', calcPL));
+$('plDir').addEventListener('change', calcPL);
+calcPL();
+
+/* ============================================================
+   15. COMPOUNDING CALCULATOR
+============================================================ */
+function calcComp() {
+  const start = val('cpBal');
+  const rate = val('cpRate');
+  const months = Math.max(1, Math.min(60, Math.round(val('cpMonths'))));
+  const wPct = Math.min(100, Math.max(0, val('cpWithdraw')));
+
+  $('cpRateLbl').textContent = rate + '%';
+
+  let bal = start;
+  let withdrawn = 0;
+  const series = [start];
+
+  for (let i = 0; i < months; i++) {
+    bal = bal * (1 + rate / 100);
+    const w = bal * (wPct / 100);
+    bal -= w;
+    withdrawn += w;
+    series.push(bal);
+  }
+
+  const profit = bal + withdrawn - start;
+  const growth = start > 0 ? ((bal + withdrawn) / start - 1) * 100 : 0;
+
+  $('cpFinal').textContent = money(bal);
+  $('cpProfit').textContent = (profit >= 0 ? '+' : '-') + money(Math.abs(profit)).slice(1);
+  $('cpGrowth').textContent = (growth >= 0 ? '+' : '') + num(growth, 1) + '%';
+  $('cpWith').textContent = money(withdrawn);
+
+  // bars
+  const barsEl = $('cpBars');
+  const step = Math.max(1, Math.ceil(series.length / 14));
+  const sampled = series.filter((_, i) => i % step === 0).slice(-14);
+  const max = Math.max(...sampled, 1);
+  barsEl.innerHTML = sampled.map(v =>
+    '<i style="height:' + Math.max((v / max) * 100, 4) + '%" title="' + money(v) + '"></i>'
+  ).join('');
+}
+['cpBal', 'cpRate', 'cpMonths', 'cpWithdraw'].forEach(id => $(id).addEventListener('input', calcComp));
+calcComp();
+
+/* ============================================================
+   16. CONTACT FORM → WHATSAPP
+============================================================ */
+$('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  const name = $('cfName').value.trim();
+  const phone = $('cfPhone').value.trim();
+  const service = $('cfService').value;
+  const msg = $('cfMsg').value.trim();
+
+  const text =
+    'Hello Mohesh,%0A%0A' +
+    '*Name:* ' + encodeURIComponent(name) + '%0A' +
+    '*Phone:* ' + encodeURIComponent(phone) + '%0A' +
+    '*Service:* ' + encodeURIComponent(service) + '%0A' +
+    '*Message:* ' + encodeURIComponent(msg || 'I would like to know more about your trading services.');
+
+  $('formMsg').classList.add('show');
+  setTimeout(() => {
+    window.open('https://wa.me/919994664490?text=' + text, '_blank');
+  }, 500);
+  setTimeout(() => $('formMsg').classList.remove('show'), 3500);
+});
+
+/* ============================================================
+   17. FOOTER YEAR
+============================================================ */
+$('year').textContent = new Date().getFullYear();
+
+/* ============================================================
+   18. SMOOTH ANCHOR OFFSET (extra safety)
+============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function (e) {
+    const id = this.getAttribute('href');
+    if (id === '#' || id.length < 2) return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const top = target.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>
