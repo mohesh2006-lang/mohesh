@@ -11,7 +11,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📈</text></svg>">
 <style>
 /* ================================================================
-   ROOT TOKENS — 2026 PREMIUM FINTECH PALETTE
+   ROOT TOKENS
 ================================================================ */
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -22,21 +22,15 @@
   --surface2:rgba(255,255,255,.055);
   --stroke:rgba(255,255,255,.07);
   --stroke2:rgba(255,255,255,.14);
-
   --violet:#8b5cf6;
-  --violet2:#a855f7;
   --violet3:#c084fc;
   --cyan:#22d3ee;
-  --cyan2:#06b6d4;
   --amber:#fbbf24;
-  --amber2:#f59e0b;
   --rose:#f43f5e;
   --emerald:#10b981;
-
   --txt:#f1f5f9;
   --muted:#8b93b8;
   --muted2:#6b7394;
-
   --grad:linear-gradient(135deg,#8b5cf6 0%,#22d3ee 100%);
   --grad2:linear-gradient(135deg,#fbbf24 0%,#f43f5e 100%);
   --grad3:linear-gradient(135deg,#22d3ee 0%,#8b5cf6 100%);
@@ -44,21 +38,14 @@
          radial-gradient(at 80% 10%,rgba(34,211,238,.18) 0px,transparent 50%),
          radial-gradient(at 50% 80%,rgba(251,191,36,.10) 0px,transparent 50%),
          radial-gradient(at 90% 90%,rgba(244,63,94,.12) 0px,transparent 50%);
-
   --r:20px;
   --shadow:0 30px 80px -30px rgba(0,0,0,.9);
-  --glow-v:0 0 60px -10px rgba(139,92,246,.6);
-  --glow-c:0 0 60px -10px rgba(34,211,238,.5);
 }
 html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{
   font-family:'Sora',system-ui,sans-serif;
-  background:var(--bg);
-  color:var(--txt);
-  line-height:1.6;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  position:relative;
+  background:var(--bg);color:var(--txt);line-height:1.6;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;position:relative;
 }
 body::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
@@ -96,38 +83,197 @@ section{position:relative;padding:120px 0;z-index:1}
 @media(max-width:900px){.cursor-dot,.cursor-ring{display:none}}
 
 /* ================================================================
-   PRELOADER
+   TRADING-THEMED PRELOADER  ⚡ NEW
 ================================================================ */
 #preloader{
   position:fixed;inset:0;z-index:10000;background:#030014;
   display:grid;place-items:center;
-  transition:opacity .8s ease,visibility .8s ease;
+  transition:opacity .9s ease,visibility .9s ease;
+  overflow:hidden;
 }
 #preloader.hide{opacity:0;visibility:hidden}
-.pl-wrap{text-align:center;position:relative}
-.pl-orb{
-  width:90px;height:90px;border-radius:50%;margin:0 auto 28px;position:relative;
-  background:conic-gradient(from 0deg,#8b5cf6,#22d3ee,#fbbf24,#8b5cf6);
-  animation:spinOrb 1.6s linear infinite;
-  box-shadow:0 0 60px -8px rgba(139,92,246,.9);
+
+/* subtle grid background inside preloader */
+#preloader::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(139,92,246,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(34,211,238,.06) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 70%);
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0%,transparent 70%);
+  animation:gridPan 8s linear infinite;
 }
-.pl-orb::after{
-  content:'';position:absolute;inset:8px;border-radius:50%;background:#030014;
+@keyframes gridPan{to{background-position:44px 44px,44px 44px}}
+
+.pl-wrap{
+  position:relative;z-index:2;
+  width:min(560px,88vw);text-align:center;
 }
-.pl-orb::before{
-  content:'';position:absolute;inset:24px;border-radius:50%;
-  background:var(--grad);animation:pulseInner 1.2s ease-in-out infinite;
+
+/* mini live chart display */
+.pl-chart{
+  position:relative;height:180px;margin-bottom:34px;
+  border-radius:20px;
+  background:linear-gradient(180deg,rgba(139,92,246,.06),rgba(34,211,238,.03));
+  border:1px solid rgba(139,92,246,.22);
+  overflow:hidden;
+  padding:20px;
+  box-shadow:0 30px 80px -30px rgba(139,92,246,.6),
+             inset 0 0 60px rgba(139,92,246,.06);
 }
-@keyframes spinOrb{to{transform:rotate(360deg)}}
-@keyframes pulseInner{0%,100%{transform:scale(.85);opacity:.7}50%{transform:scale(1);opacity:1}}
-.pl-name{
-  font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.55em;
-  font-size:14px;margin-bottom:14px;
-  background:var(--grad3);-webkit-background-clip:text;background-clip:text;color:transparent;
+.pl-chart::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:32px 32px;
 }
-.pl-track{width:200px;height:2px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;margin:0 auto}
-.pl-track i{display:block;height:100%;width:0;background:var(--grad);border-radius:99px;animation:plfill 1.6s cubic-bezier(.5,.1,.2,1) forwards}
+.pl-price-tag{
+  position:absolute;top:14px;left:18px;z-index:3;
+  display:flex;align-items:center;gap:9px;
+  padding:6px 12px;border-radius:9px;
+  background:rgba(3,0,20,.75);border:1px solid rgba(139,92,246,.3);
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;
+  backdrop-filter:blur(8px);
+}
+.pl-price-tag .dot-live{
+  width:7px;height:7px;border-radius:50%;background:#f43f5e;
+  box-shadow:0 0 10px #f43f5e;
+  animation:liveBlink 1.1s ease-in-out infinite;
+}
+@keyframes liveBlink{0%,100%{opacity:1}50%{opacity:.3}}
+.pl-price-tag .sym-txt{color:#c4b5fd;letter-spacing:.05em}
+
+/* candle chart */
+.pl-candles{
+  position:absolute;inset:0;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  gap:0;padding:0 14px;
+}
+.pl-candle-wrap{
+  display:flex;align-items:center;height:100%;
+  position:relative;
+}
+.pl-candle{
+  position:relative;width:12px;margin:0 5px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  height:100%;
+}
+.pl-wick{
+  width:2px;border-radius:2px;background:currentColor;
+}
+.pl-body{
+  width:12px;border-radius:3px;background:currentColor;
+  box-shadow:0 0 14px currentColor;
+}
+.pl-candle.up{color:#10b981;animation:candleUp .6s cubic-bezier(.2,.8,.2,1) both}
+.pl-candle.down{color:#f43f5e;animation:candleUp .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes candleUp{
+  from{opacity:0;transform:scaleY(.2) translateY(20px)}
+  to{opacity:1;transform:scaleY(1) translateY(0)}
+}
+.pl-candle:nth-child(1){animation-delay:.05s}
+.pl-candle:nth-child(2){animation-delay:.15s}
+.pl-candle:nth-child(3){animation-delay:.25s}
+.pl-candle:nth-child(4){animation-delay:.35s}
+.pl-candle:nth-child(5){animation-delay:.45s}
+.pl-candle:nth-child(6){animation-delay:.55s}
+.pl-candle:nth-child(7){animation-delay:.65s}
+.pl-candle:nth-child(8){animation-delay:.75s}
+.pl-candle:nth-child(9){animation-delay:.85s}
+.pl-candle:nth-child(10){animation-delay:.95s}
+.pl-candle:nth-child(11){animation-delay:1.05s}
+.pl-candle:nth-child(12){animation-delay:1.15s}
+.pl-candle:nth-child(13){animation-delay:1.25s}
+.pl-candle:nth-child(14){animation-delay:1.35s}
+
+/* moving price line */
+.pl-trendline{
+  position:absolute;inset:0;z-index:1;opacity:.85;
+}
+.pl-trendline svg{width:100%;height:100%}
+.pl-trendline path{
+  fill:none;stroke:url(#plGrad);stroke-width:2.4;
+  stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 0 6px rgba(34,211,238,.7));
+  stroke-dasharray:600;
+  stroke-dashoffset:600;
+  animation:drawLine 2.6s cubic-bezier(.5,0,.2,1) forwards;
+}
+@keyframes drawLine{to{stroke-dashoffset:0}}
+
+/* pulsing end dot */
+.pl-enddot{
+  position:absolute;right:20px;top:50%;transform:translateY(-50%);
+  width:14px;height:14px;border-radius:50%;background:#22d3ee;
+  box-shadow:0 0 20px #22d3ee,0 0 40px rgba(34,211,238,.5);
+  animation:endPulse 1.6s ease-in-out infinite;
+}
+@keyframes endPulse{
+  0%,100%{transform:translateY(-50%) scale(1);opacity:1}
+  50%{transform:translateY(-50%) scale(1.5);opacity:.65}
+}
+
+/* brand + loading text */
+.pl-brand{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:22px;letter-spacing:.42em;
+  margin-bottom:20px;
+  background:linear-gradient(135deg,#c084fc,#22d3ee,#fbbf24);
+  background-size:200% 200%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:gradShift 3s ease infinite;
+}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+.pl-status{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;color:#8b93b8;letter-spacing:.16em;
+  margin-bottom:16px;text-transform:uppercase;
+  min-height:18px;
+}
+.pl-status .typed-txt{color:#22d3ee}
+.pl-caret{
+  display:inline-block;width:8px;height:13px;
+  background:#22d3ee;vertical-align:middle;
+  margin-left:3px;animation:caretBlink .8s step-end infinite;
+}
+@keyframes caretBlink{50%{opacity:0}}
+
+.pl-track{
+  width:min(360px,80%);height:4px;margin:0 auto;
+  background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden;
+  position:relative;
+}
+.pl-track i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#8b5cf6,#22d3ee,#fbbf24);
+  background-size:200% 100%;
+  box-shadow:0 0 20px rgba(139,92,246,.9);
+  animation:plfill 3.1s cubic-bezier(.5,.05,.15,1) forwards, shimmerBar 1.6s linear infinite;
+}
 @keyframes plfill{to{width:100%}}
+@keyframes shimmerBar{to{background-position:200% 0}}
+
+.pl-pct{
+  margin-top:14px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;color:#c4b5fd;font-weight:600;
+  letter-spacing:.05em;
+}
+
+/* price ticker row inside preloader */
+.pl-tickers{
+  display:flex;justify-content:center;gap:20px;flex-wrap:wrap;
+  margin-top:26px;
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  color:#6b7394;letter-spacing:.06em;
+}
+.pl-ticker{display:flex;gap:6px;align-items:center}
+.pl-ticker b{color:#c1cbe0;font-weight:600}
+.pl-ticker .pl-up{color:#10b981}
+.pl-ticker .pl-dn{color:#f43f5e}
 
 /* ================================================================
    SCROLL PROGRESS
@@ -251,7 +397,6 @@ header.scrolled{
   background-size:200% 200%;
   animation:gradShift 6s ease infinite;
 }
-@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .hero-sub{
   font-size:clamp(1rem,1.65vw,1.2rem);color:var(--muted);max-width:720px;margin:0 auto 44px;
   animation:fadeUp 1s .2s cubic-bezier(.2,.8,.2,1) both;font-weight:400;
@@ -324,7 +469,7 @@ header.scrolled{
 .shead p{color:var(--muted);font-size:1.05rem;line-height:1.7}
 
 /* ================================================================
-   REVEAL ANIMATIONS
+   REVEAL
 ================================================================ */
 .reveal{opacity:0;transform:translateY(42px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
@@ -432,11 +577,9 @@ header.scrolled{
 .svc:hover .svc-num{color:rgba(34,211,238,.15)}
 
 /* ================================================================
-   LIVE CHART SECTION
+   LIVE CHART
 ================================================================ */
-#livechart{
-  background:linear-gradient(180deg,transparent,rgba(139,92,246,.04),transparent);
-}
+#livechart{background:linear-gradient(180deg,transparent,rgba(139,92,246,.04),transparent)}
 .chart-shell{
   background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,.01));
   border:1px solid var(--stroke);border-radius:26px;overflow:hidden;
@@ -569,7 +712,7 @@ select.inp option{background:#0a0424;color:#f1f5f9}
 .bars i:hover{opacity:1;filter:brightness(1.4);transform:scaleY(1.04)}
 
 /* ================================================================
-   PERFORMANCE / METRICS
+   PERFORMANCE
 ================================================================ */
 #performance{background:linear-gradient(180deg,transparent,rgba(34,211,238,.03),transparent)}
 .perf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
@@ -609,7 +752,7 @@ select.inp option{background:#0a0424;color:#f1f5f9}
 @keyframes sparkPulse{0%,100%{opacity:.5}50%{opacity:1}}
 
 /* ================================================================
-   TESTIMONIALS MARQUEE
+   MARQUEE
 ================================================================ */
 .marquee{
   overflow:hidden;position:relative;padding:20px 0;
@@ -837,6 +980,8 @@ footer{
   .hstat{padding:18px 12px}
   .ticker-wrap::before,.ticker-wrap::after{width:60px}
   .tcard{width:280px}
+  .pl-chart{height:150px}
+  .pl-brand{font-size:18px;letter-spacing:.28em}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
@@ -853,12 +998,133 @@ footer{
 <!-- SCROLL PROGRESS -->
 <div id="progress"></div>
 
-<!-- PRELOADER -->
+<!-- ================================================================
+     TRADING-THEMED PRELOADER
+================================================================= -->
 <div id="preloader">
   <div class="pl-wrap">
-    <div class="pl-orb"></div>
-    <div class="pl-name">MOHESH FX</div>
+    <!-- Mini live chart -->
+    <div class="pl-chart">
+      <div class="pl-price-tag">
+        <span class="dot-live"></span>
+        <span class="sym-txt">EUR/USD</span>
+      </div>
+
+      <!-- trend line overlay -->
+      <div class="pl-trendline">
+        <svg viewBox="0 0 500 180" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="plGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#8b5cf6"/>
+              <stop offset="50%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#fbbf24"/>
+            </linearGradient>
+            <linearGradient id="plFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="rgba(34,211,238,.35)"/>
+              <stop offset="100%" stop-color="rgba(34,211,238,0)"/>
+            </linearGradient>
+          </defs>
+          <path d="M 20 130 L 55 115 L 90 122 L 125 95 L 160 108 L 195 82 L 230 92 L 265 68 L 300 78 L 335 55 L 370 62 L 405 42 L 440 50 L 480 25" fill="none"/>
+          <path d="M 20 130 L 55 115 L 90 122 L 125 95 L 160 108 L 195 82 L 230 92 L 265 68 L 300 78 L 335 55 L 370 62 L 405 42 L 440 50 L 480 25 L 480 180 L 20 180 Z" fill="url(#plFill)" opacity="0" class="pl-fill"/>
+        </svg>
+      </div>
+
+      <!-- candles -->
+      <div class="pl-candles">
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:22px"></div>
+          <div class="pl-body" style="height:26px"></div>
+          <div class="pl-wick" style="height:14px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle down">
+          <div class="pl-wick" style="height:18px"></div>
+          <div class="pl-body" style="height:34px"></div>
+          <div class="pl-wick" style="height:10px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:14px"></div>
+          <div class="pl-body" style="height:44px"></div>
+          <div class="pl-wick" style="height:16px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle down">
+          <div class="pl-wick" style="height:12px"></div>
+          <div class="pl-body" style="height:28px"></div>
+          <div class="pl-wick" style="height:22px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:20px"></div>
+          <div class="pl-body" style="height:52px"></div>
+          <div class="pl-wick" style="height:12px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:16px"></div>
+          <div class="pl-body" style="height:38px"></div>
+          <div class="pl-wick" style="height:18px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle down">
+          <div class="pl-wick" style="height:14px"></div>
+          <div class="pl-body" style="height:30px"></div>
+          <div class="pl-wick" style="height:20px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:22px"></div>
+          <div class="pl-body" style="height:56px"></div>
+          <div class="pl-wick" style="height:10px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:18px"></div>
+          <div class="pl-body" style="height:42px"></div>
+          <div class="pl-wick" style="height:14px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle down">
+          <div class="pl-wick" style="height:12px"></div>
+          <div class="pl-body" style="height:24px"></div>
+          <div class="pl-wick" style="height:22px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:16px"></div>
+          <div class="pl-body" style="height:48px"></div>
+          <div class="pl-wick" style="height:12px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:20px"></div>
+          <div class="pl-body" style="height:60px"></div>
+          <div class="pl-wick" style="height:8px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:14px"></div>
+          <div class="pl-body" style="height:44px"></div>
+          <div class="pl-wick" style="height:16px"></div>
+        </div></div>
+        <div class="pl-candle-wrap"><div class="pl-candle up">
+          <div class="pl-wick" style="height:18px"></div>
+          <div class="pl-body" style="height:66px"></div>
+          <div class="pl-wick" style="height:8px"></div>
+        </div></div>
+      </div>
+
+      <!-- pulsing end dot -->
+      <div class="pl-enddot"></div>
+    </div>
+
+    <!-- Brand -->
+    <div class="pl-brand">MOHESH FX</div>
+
+    <!-- Typing status -->
+    <div class="pl-status">
+      <span class="typed-txt" id="plTyped">Initializing market data</span><span class="pl-caret"></span>
+    </div>
+
+    <!-- Progress bar -->
     <div class="pl-track"><i></i></div>
+    <div class="pl-pct" id="plPct">0%</div>
+
+    <!-- Live ticker row -->
+    <div class="pl-tickers">
+      <div class="pl-ticker">EUR/USD <b>1.0865</b> <span class="pl-up">▲ 0.42%</span></div>
+      <div class="pl-ticker">XAU/USD <b>2318.50</b> <span class="pl-up">▲ 0.86%</span></div>
+      <div class="pl-ticker">BTC/USD <b>67,420</b> <span class="pl-dn">▼ 0.21%</span></div>
+    </div>
   </div>
 </div>
 
@@ -900,8 +1166,8 @@ footer{
     </div>
     <div class="hero-stats">
       <div class="hstat"><b data-count="6" data-suffix="+">0</b><span>Years Experience</span></div>
-      <div class="hstat"><b data-count="480" data-prefix="$" data-suffix="K+">0</b><span>Funded Capital</span></div>
-      <div class="hstat"><b data-count="2400" data-suffix="+">0</b><span>Trades Executed</span></div>
+      <div class="hstat"><b data-count="6" data-suffix="">0</b><span>Passed Accounts</span></div>
+      <div class="hstat"><b data-count="10000" data-prefix="$" data-suffix="">0</b><span>Trading Capital</span></div>
       <div class="hstat"><b data-count="800" data-suffix="+">0</b><span>Traders Mentored</span></div>
     </div>
   </div>
@@ -1066,7 +1332,7 @@ footer{
   </div>
 </section>
 
-<!-- LIVE FREE CHART -->
+<!-- LIVE CHART -->
 <section id="livechart">
   <div class="container">
     <div class="shead reveal">
@@ -1126,7 +1392,6 @@ footer{
 
       <div class="calc-body">
 
-        <!-- POSITION SIZE -->
         <div class="cpanel active" id="panel-pos">
           <div class="cgrid">
             <div class="cform">
@@ -1180,7 +1445,6 @@ footer{
           </div>
         </div>
 
-        <!-- RISK MANAGEMENT -->
         <div class="cpanel" id="panel-risk">
           <div class="cgrid">
             <div class="cform">
@@ -1229,7 +1493,6 @@ footer{
           </div>
         </div>
 
-        <!-- PROFIT / LOSS -->
         <div class="cpanel" id="panel-pl">
           <div class="cgrid">
             <div class="cform">
@@ -1272,7 +1535,6 @@ footer{
           </div>
         </div>
 
-        <!-- COMPOUNDING -->
         <div class="cpanel" id="panel-comp">
           <div class="cgrid">
             <div class="cform">
@@ -1342,7 +1604,7 @@ footer{
       </div>
       <div class="perf-card reveal">
         <div class="perf-label">Funded Accounts Passed</div>
-        <div class="perf-value">14+</div>
+        <div class="perf-value">6</div>
         <div class="perf-desc">Successfully passed prop-firm evaluations including FTMO-style challenges.</div>
         <div class="perf-spark"><i style="height:30%"></i><i style="height:45%"></i><i style="height:60%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:80%"></i><i style="height:88%"></i><i style="height:95%"></i></div>
       </div>
@@ -1373,7 +1635,6 @@ footer{
     </div>
 
     <div class="guides-grid">
-      <!-- INVESTMENT GUIDE -->
       <div class="guide-col reveal">
         <div class="guide-head">
           <div class="guide-ico">💼</div>
@@ -1449,7 +1710,6 @@ footer{
         </div>
       </div>
 
-      <!-- TRADING GUIDE -->
       <div class="guide-col reveal">
         <div class="guide-head">
           <div class="guide-ico">📈</div>
@@ -1740,11 +2000,78 @@ footer{
 
 <script>
 /* ================================================================
-   1. PRELOADER
+   1. PRELOADER — with trading-theme + typing effect + progress %
 ================================================================ */
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('preloader').classList.add('hide'), 1100);
-});
+(function () {
+  const preloader = document.getElementById('preloader');
+  const typedEl = document.getElementById('plTyped');
+  const pctEl = document.getElementById('plPct');
+  const fillPath = document.querySelector('.pl-fill');
+
+  // Animate fill path opacity after line draws
+  setTimeout(() => {
+    if (fillPath) {
+      fillPath.style.transition = 'opacity 1s ease';
+      fillPath.style.opacity = '0.55';
+    }
+  }, 1800);
+
+  // Status messages typing sequence
+  const statusMsgs = [
+    'Initializing market data',
+    'Connecting to liquidity',
+    'Loading EUR/USD feed',
+    'Calculating risk models',
+    'Calibrating position sizes',
+    'Ready to trade'
+  ];
+  let msgIdx = 0, charIdx = 0, typing = true;
+  function typeLoop() {
+    if (!typedEl) return;
+    const msg = statusMsgs[msgIdx];
+    if (typing) {
+      typedEl.textContent = msg.slice(0, ++charIdx);
+      if (charIdx >= msg.length) {
+        typing = false;
+        setTimeout(typeLoop, 550);
+        return;
+      }
+      setTimeout(typeLoop, 32);
+    } else {
+      if (charIdx > 0) {
+        typedEl.textContent = msg.slice(0, --charIdx);
+        setTimeout(typeLoop, 14);
+      } else {
+        typing = true;
+        msgIdx = (msgIdx + 1) % statusMsgs.length;
+        setTimeout(typeLoop, 220);
+      }
+    }
+  }
+  typeLoop();
+
+  // Progress percentage counter synced with bar (3.1s duration)
+  const dur = 3100;
+  const t0 = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - t0) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 2.2);
+    pctEl.textContent = Math.round(eased * 100) + '%';
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+
+  // Hide preloader after animation completes
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      preloader.classList.add('hide');
+      document.body.classList.remove('lock');
+    }, 3400);
+  });
+  // Fallback in case load event fires late
+  setTimeout(() => {
+    if (!preloader.classList.contains('hide')) preloader.classList.add('hide');
+  }, 4200);
+})();
 
 /* ================================================================
    2. CUSTOM CURSOR
@@ -1755,19 +2082,16 @@ window.addEventListener('load', () => {
   if (!dot || window.matchMedia('(max-width:900px)').matches) return;
 
   let mx = 0, my = 0, rx = 0, ry = 0;
-
   document.addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
     dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
   });
-
-  function loop() {
+  (function loop() {
     rx += (mx - rx) * 0.18;
     ry += (my - ry) * 0.18;
     ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
     requestAnimationFrame(loop);
-  }
-  loop();
+  })();
 
   document.querySelectorAll('a,button,input,select,textarea,[data-cursor],.svc,.hstat,.perf-card,.tcard,.faq,.acc-q').forEach(el => {
     el.addEventListener('mouseenter', () => ring.classList.add('hover'));
@@ -1804,7 +2128,7 @@ navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
 }));
 
 /* ================================================================
-   5. ACTIVE NAV ON SCROLL
+   5. ACTIVE NAV
 ================================================================ */
 const sections = document.querySelectorAll('section[id]');
 const navA = document.querySelectorAll('.nav-links a');
@@ -1818,7 +2142,7 @@ const navObserver = new IntersectionObserver(entries => {
 sections.forEach(s => navObserver.observe(s));
 
 /* ================================================================
-   6. REVEAL ON SCROLL
+   6. REVEAL
 ================================================================ */
 const revealObs = new IntersectionObserver((entries, obs) => {
   entries.forEach((e, i) => {
@@ -1831,7 +2155,7 @@ const revealObs = new IntersectionObserver((entries, obs) => {
 document.querySelectorAll('.reveal, .reveal-scale').forEach(el => revealObs.observe(el));
 
 /* ================================================================
-   7. PARTICLE CANVAS (Hero background)
+   7. PARTICLE CANVAS
 ================================================================ */
 (function () {
   const cv = document.getElementById('particleCanvas');
@@ -1866,21 +2190,14 @@ document.querySelectorAll('.reveal, .reveal-scale').forEach(el => revealObs.obse
 
   function draw() {
     ctx.clearRect(0, 0, W, H);
-    // connections
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0 || p.x > W) p.vx *= -1;
       if (p.y < 0 || p.y > H) p.vy *= -1;
-
-      // mouse attraction
       const dx = mouse.x - p.x, dy = mouse.y - p.y;
       const d2 = dx * dx + dy * dy;
-      if (d2 < 18000) {
-        p.x += dx * 0.0018;
-        p.y += dy * 0.0018;
-      }
-
+      if (d2 < 18000) { p.x += dx * 0.0018; p.y += dy * 0.0018; }
       for (let j = i + 1; j < particles.length; j++) {
         const q = particles[j];
         const ddx = p.x - q.x, ddy = p.y - q.y;
@@ -1890,13 +2207,10 @@ document.querySelectorAll('.reveal, .reveal-scale').forEach(el => revealObs.obse
           ctx.strokeStyle = `rgba(139,92,246,${a})`;
           ctx.lineWidth = 0.7;
           ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-          ctx.lineTo(q.x, q.y);
-          ctx.stroke();
+          ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
         }
       }
     }
-    // dots
     particles.forEach(p => {
       ctx.fillStyle = `rgba(${p.c},0.9)`;
       ctx.beginPath();
@@ -1906,10 +2220,8 @@ document.querySelectorAll('.reveal, .reveal-scale').forEach(el => revealObs.obse
       ctx.shadowColor = `rgba(${p.c},0.7)`;
     });
     ctx.shadowBlur = 0;
-
     requestAnimationFrame(draw);
   }
-
   window.addEventListener('resize', resize);
   resize();
   draw();
@@ -1941,7 +2253,6 @@ function buildTicker() {
   tickerEl.innerHTML = html;
 }
 buildTicker();
-
 setInterval(() => {
   tickerEl.querySelectorAll('.tick').forEach(t => {
     const px = t.querySelector('.px');
@@ -2000,7 +2311,6 @@ document.querySelectorAll('.acc-q').forEach(btn => {
   });
 });
 
-/* FAQ */
 document.querySelectorAll('.faq').forEach(f => {
   const a = f.querySelector('.faq-a');
   f.querySelector('.faq-q').addEventListener('click', () => {
@@ -2037,7 +2347,7 @@ const num = (n, d = 2) => (isFinite(n) ? n : 0).toLocaleString('en-US', { minimu
 const val = id => parseFloat($(id).value) || 0;
 
 /* ================================================================
-   13. POSITION SIZE CALCULATOR
+   13. POSITION SIZE
 ================================================================ */
 function calcPosition() {
   const bal = val('psBal');
@@ -2072,7 +2382,7 @@ $('psPair').addEventListener('change', function () {
 calcPosition();
 
 /* ================================================================
-   14. RISK MANAGEMENT CALCULATOR
+   14. RISK MANAGEMENT
 ================================================================ */
 function calcRisk() {
   const bal = val('rmBal');
@@ -2130,7 +2440,7 @@ function calcRisk() {
 calcRisk();
 
 /* ================================================================
-   15. PROFIT / LOSS
+   15. P&L
 ================================================================ */
 function calcPL() {
   const lots = val('plLots');
@@ -2195,7 +2505,7 @@ function calcComp() {
 calcComp();
 
 /* ================================================================
-   17. TESTIMONIALS MARQUEE
+   17. TESTIMONIALS
 ================================================================ */
 const tData = [
   { n: 'Arjun R.', r: 'Funded Trader, Chennai', t: 'Mohesh anna completely changed how I see risk. Passed my first $50K challenge in 3 weeks using his 1% rule framework.', s: 5 },
@@ -2207,7 +2517,7 @@ const tData = [
   { n: 'Kavya R.', r: 'Student, Salem', t: 'Learning forex from Mohesh is like having a big brother in the markets. Patient, clear, and honest.', s: 5 }
 ];
 const tMarquee = document.getElementById('tMarquee');
-function buildT() {
+(function buildT() {
   let html = '';
   for (let rep = 0; rep < 2; rep++) {
     tData.forEach(t => {
@@ -2223,11 +2533,10 @@ function buildT() {
     });
   }
   tMarquee.innerHTML = html;
-}
-buildT();
+})();
 
 /* ================================================================
-   18. TILT EFFECT ON CARDS
+   18. TILT + MAGNETIC
 ================================================================ */
 document.querySelectorAll('[data-tilt]').forEach(card => {
   card.addEventListener('mousemove', e => {
@@ -2236,14 +2545,9 @@ document.querySelectorAll('[data-tilt]').forEach(card => {
     const y = (e.clientY - r.top) / r.height - 0.5;
     card.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-10px)`;
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
 });
 
-/* ================================================================
-   19. MAGNETIC BUTTONS
-================================================================ */
 document.querySelectorAll('[data-magnetic]').forEach(btn => {
   btn.addEventListener('mousemove', e => {
     const r = btn.getBoundingClientRect();
@@ -2251,13 +2555,11 @@ document.querySelectorAll('[data-magnetic]').forEach(btn => {
     const y = e.clientY - r.top - r.height / 2;
     btn.style.transform = `translate(${x * 0.22}px, ${y * 0.22}px) translateY(-3px)`;
   });
-  btn.addEventListener('mouseleave', () => {
-    btn.style.transform = '';
-  });
+  btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
 });
 
 /* ================================================================
-   20. TRADINGVIEW LIVE CHART
+   19. TRADINGVIEW LIVE CHART
 ================================================================ */
 (function () {
   const container = document.getElementById('tvchart');
@@ -2272,9 +2574,7 @@ document.querySelectorAll('[data-magnetic]').forEach(btn => {
     inner.style.width = '100%';
     container.appendChild(inner);
 
-    // Load TradingView library once
     const init = () => {
-      /* global TradingView */
       tvWidget = new TradingView.widget({
         container_id: inner.id,
         autosize: true,
@@ -2333,13 +2633,11 @@ document.querySelectorAll('[data-magnetic]').forEach(btn => {
       loadChart(btn.dataset.symbol);
     });
   });
-
-  // Load default
   loadChart('FX:EURUSD');
 })();
 
 /* ================================================================
-   21. CONTACT FORM → WHATSAPP
+   20. CONTACT FORM
 ================================================================ */
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
@@ -2361,12 +2659,12 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 });
 
 /* ================================================================
-   22. FOOTER YEAR
+   21. FOOTER YEAR
 ================================================================ */
 $('year').textContent = new Date().getFullYear();
 
 /* ================================================================
-   23. SMOOTH ANCHOR OFFSET
+   22. SMOOTH ANCHOR
 ================================================================ */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', function (e) {
@@ -2381,7 +2679,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 /* ================================================================
-   24. PARALLAX ORBS ON SCROLL (hero subtitle subtle)
+   23. PARALLAX
 ================================================================ */
 window.addEventListener('scroll', () => {
   const y = window.scrollY;
